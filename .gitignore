@@ -1,0 +1,11 @@
+/venv/
+/env/
+/.idea/inspectionProfiles/profiles_settings.xml
+/.idea/inspectionProfiles/Project_Default.xml
+/.idea/.gitignore
+/.idea/aws.xml
+/.idea/git_toolbox_prj.xml
+/.idea/Invo.iml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/vcs.xml

@@ -72,6 +72,7 @@ def signup(request):
         })
 
 def signin(request):
+    print(request.tenant)
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
@@ -79,10 +80,11 @@ def signin(request):
         if user is not None:
             login(request, user)
             domain = user.user.all().first().get_primary_domain()
-            url = f"http://rangerover.mysite.com:8000/dashboard"
+            url = f"http://test.testsite.com:8000/dashboard"
 
             return redirect(url)
         else:
+            print(user)
             messages.success(request, ("There Was An Error Logging In, Try Again..."))	
             return redirect('signin')	
 

@@ -5,7 +5,7 @@ from .models import Item,Expense
 class ItemForm(forms.ModelForm):
     class Meta:
         model = Item
-        fields = ('name','price','client')
+        fields = ('name','price')
 
 class ExpenseForm(forms.ModelForm):
     class Meta:

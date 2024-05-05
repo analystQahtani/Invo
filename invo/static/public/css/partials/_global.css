@@ -1,0 +1,46 @@
+
+
+
+/* Global classes */
+
+/*text*/
+.title-text{
+    font: normal bol 50px/72px var(--Frank_Ruhl_Libre);
+ }
+ .text-uppercase{
+    text-transform: uppercase;
+ }
+ /*button*/
+
+ .button{
+    padding: 0.8rem 2.2rem ;
+    font: normal 500 16px/20px var(--Frank_Ruhl_Libre);
+    position: relative;
+    border: 3px solid transparent;
+    border-radius: 4px;    
+ }
+ 
+.button.primary-button{
+    background: #BBBBBB;
+    background-clip: padding-box ;
+    color: whitesmoke;
+    transition: background .6s ease;
+    box-shadow: var(--box-shadow);
+}
+
+.button.primary-button:hover{
+    background: #FADCD9;
+    background-clip: padding-box ;
+    color: black;
+    
+}
+.button.primary-button::after{
+    position: absolute ;
+    top: -2px; left: -2px ;
+    bottom: -2px;right: -2px;
+    background: black;
+    content:'' ;
+    z-index: -1;
+    border-radius: 4px;
+} 
+ 

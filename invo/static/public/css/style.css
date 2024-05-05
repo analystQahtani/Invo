@@ -1,0 +1,170 @@
+/* import fonts from fonts.css file */
+@import url(./fonts.css);
+/* css variabales  */
+@import url(./partials/-variables.css);
+
+/* import global style */
+@import url(./partials/_global.css);
+
+/* start navigation */
+.header_area .main-menu .navbar .navbar-brand {
+    padding: 0 2rem 0 5rem;
+}
+
+.header_area .main-menu .navbar  {
+    padding: 1rem 20rem;
+}
+
+.header_area .main-menu .nav-item .nav-link  {
+    font: norma 500 15px/2px var(--lato);
+   font-size: larger;
+    text-transform: uppercase;
+   
+    padding: 1.7rem;
+    color: var(--primary-color1) ;
+}
+
+.header_area .main-menu .navbar-nav .active a {
+    background: var(--gradient-color);
+    -webkit-background-clip: text ;
+    -webkit-text-fill-color:transparent ;
+}
+
+.header_area .main-menu .navbar-nav  a:hover {
+    background: var(--gradient-color);
+    -webkit-background-clip: text ;
+    -webkit-text-fill-color:transparent ;
+}
+.header_area .main-menu .navbar-nav  button {
+    font-family: var(--Frank_Ruhl_Libre);
+    font-size: large;
+
+}
+
+/* end navigation */
+
+/* banner area */
+.site-main .site-banner {
+   background:url(../img/Frame\ 343banner.jpg) no-repeat 0% 50% ; 
+}
+/*
+.site-main .site-banner .site-title h3 {
+    padding-top: 30%;
+    font-weight: 500;
+}
+.site-main .site-banner .site-title h3::after {
+    content: "";
+    height: 2px;
+    width: 18vw;
+    background: black;
+    display: inline-block;
+    margin-left: 5%;
+    transform: translateY(-10px);
+}
+*/
+.site-main .site-banner .site-title h1 {
+    padding-top: 30%;
+    font-size: 5rem;
+    text-align: center;
+}
+.site-main .site-banner .site-title h6 {
+    font-size: 1.2rem;
+    text-align: center;
+}
+.site-main .site-banner .banner-image img{
+    padding-top: 15% ;
+    width:  90rem;
+   
+}
+.site-main .site-banner .site-buttons button{
+   padding: 1rem 2.5rem;
+   font-size: larger ;
+   font-family: var(--Frank_Ruhl_Libre);
+   
+   
+}
+.site-main .site-banner .site-buttons div{
+    padding: 0 34%;
+ }
+ 
+/* end banner area*/
+
+/* about area  */
+.site-main .about-area  {
+    background:url(../img/Frame\ 344aboutUsBanner.jpg) no-repeat 0% 50% ; 
+    
+ }
+ .site-main .about-area .container-fluid {
+padding-left: 20%;
+padding-top: 10%;
+text-align: center;
+
+    
+ }
+
+ .site-main .about-area .rowOne h1 {
+    font-family: var(--Frank_Ruhl_Libre);
+    font-size: 2.8rem ; 
+    font-weight: 500 ; 
+ }
+ .site-main .about-area .rowTwo h6 {
+    font-family: var(--Frank_Ruhl_Libre);
+    font-size: 1.5rem ; 
+    font-weight: 200 ; 
+ }
+
+ .site-main .about-area .container  {
+    padding-top: 7%; 
+    padding-left: 8%;
+ }
+
+ .site-main .about-area .container .row h1  {
+    font-family: var(--Frank_Ruhl_Libre);
+    font-size: 2.8rem ; 
+    font-weight: 500 ; 
+    text-align: center;
+ }
+ .site-main .about-area .container .row h6  {
+    font-family: var(--Frank_Ruhl_Libre);
+    font-size: 1.5rem ; 
+    font-weight: 200 ; 
+    text-align: center;
+ }
+ .site-main .about-area .container .row  .img-fluid img  {
+width: 90rem;
+}
+ /* end about area  */
+
+ /* customer-area */
+.site-main .cus-area   {
+  background-color: black;
+  width: max-content;
+    color: whitesmoke;
+    font-family: var(--Frank_Ruhl_Libre);
+    text-align: center;
+    padding-top: 15%;
+    padding-left: 15%;
+    }
+.site-main .cus-area  .row  h1  {
+        font-family: var(--Frank_Ruhl_Libre);
+    font-size: 2.8rem ; 
+    font-weight: 500 ; 
+    text-align: center;
+          }
+.site-main .cus-area  .row  h1  {
+        font-family: var(--Frank_Ruhl_Libre);
+    font-size: 2.8rem ; 
+    font-weight: 500 ; 
+    text-align: center;
+          }
+.site-main .cus-area  .row  h6  {
+    font-family: var(--Frank_Ruhl_Libre);
+    font-size: 0.8rem ; 
+    font-weight: 200 ; 
+    text-align: center;
+              }
+
+.site-main .cus-area  .row .site-buttons {
+    padding-left: 23.5%;
+}
+ /* end customer-area */

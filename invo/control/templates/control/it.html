@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+{%load static%}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>invo | invoice </title>
+    <link rel="icon" type="image/x-icon" href="{%static 'public/img/invo.png'%}">
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{%static 'public/css/styleDB.css'%}">
+    <link href="{%static 'public/css/stylesPop.css'%}" rel="stylesheet">
+  <script defer src="{%static 'public/js/scriptPop.js'%}"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <aside id="sidebar" style="background-color: black;">
+            <div class="d-flex">
+                <button class="toggle-btn" type="button">
+                    <i class="lni lni-grid-alt"></i>
+                </button>
+                <div class="sidebar-logo">
+                    <a href="#" style="font-size: larger;">invo</a>
+                </div>
+            </div>
+            <ul class="sidebar-nav">
+                
+                <li class="sidebar-item">
+                    <a href="{% url 'dashboard:dashboard' %}" class="sidebar-link">
+                        <i class="lni lni-home"></i>
+                        <span>dashboard</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="{% url 'invoice:invoice' %}" class="sidebar-link">
+                        <i class="lni lni-ticket-alt"></i>
+                        <span>invoices</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                  <a href="{% url 'invoice:customers' %}" class="sidebar-link">
+                      <i class="lni lni-target-customer"></i>
+                      <span>customers</span>
+                  </a>
+              </li>
+                <li class="sidebar-item">
+                    <a href="{% url 'management:sellers' %}" class="sidebar-link">
+                        <i class="lni lni-users"></i>
+                        <span>sellers</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="{% url 'management:items' %}" class="sidebar-link">
+                        <i class="lni lni-cart-full"></i>
+                        <span>items</span>
+                    </a>
+                </li>
+               </li>
+                <li class="sidebar-item">
+                    <a href="{% url 'management:expenses' %}" class="sidebar-link">
+                        <i class="lni lni-dollar"></i>
+                        <span>expenses</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="sidebar-footer">
+                <a href="{% url 'dashboard:logout' %}" class="sidebar-link">
+                    <i class="lni lni-exit"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+        <div class="main ">
+          <!--<div class="profile-bar">
+          <nav class="navbar navbar-expand px-4 py-3" style="background: #D8D2D9; ">
+              <form action="#" class="d-none d-sm-inline-block">
+
+              </form>
+              <div class="navbar-collapse collapse" >
+                  <ul class="navbar-nav ms-auto " >
+                      <li class="nav-item dropdown">
+                          <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
+                              <img src="./public/img/account.png" class="avatar img-fluid" alt="">
+                          </a>
+                          <div class="dropdown-menu dropdown-menu-end rounded">
+
+                          </div>
+                      </li>
+                  </ul>
+              </div>
+          </nav>
+        </div> -->
+        
+        <div class="command-line  ">
+          <nav class="navbar navbar-expand px-4 py-3" style="background : #D8D2D1; ">
+              <form action="#" class="d-none d-sm-inline-block">
+                  <div class="sort-invoce" >
+                      
+                              <div class="btn-group " >
+                                  <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #D8D2D1; border: #D8D2D1; font-size: larger;">
+                                       Item 
+                                  </button>
+                                  <ul class="dropdown-menu">
+                                  <li><a class="dropdown-item" href="#">All</a></li>
+                                  <li><a class="dropdown-item" href="#">Last 10 days</a></li>
+                                  <li><a class="dropdown-item" href="#">Viewed</a></li>
+                                  <li><hr class="dropdown-divider"></li>
+                                  <li><a class="dropdown-item" href="#">+ Add sort</a></li>
+                                  </ul>
+                              </div>
+                  </div>
+              </form>
+
+              <button class="btn btn-danger" id="open-popup">New +</button>
+              
+          </nav>
+      </div>
+      <section style="padding-top: 1%;">
+          <div>
+            <div class="center">
+              
+              </div>
+      
+              <div class="popup" id="popup">
+            
+              <div class="overlay"></div>
+              <div class="popup-content">
+              <h2> New invoice</h2>
+              <section>
+                  <div style="width: 50%; padding-left: 3%;">
+                    <div >
+                      <h1> New item </h1>
+                    </div>
+                    <div>
+                      <div class=" mt-5">
+                        <h2>Choose Item Type:</h2>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="itemType" id="goodsRadio" value="goods" checked>
+                          <label class="form-check-label" for="goodsRadio">
+                            Goods
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="itemType" id="servicesRadio" value="services">
+                          <label class="form-check-label" for="servicesRadio">
+                            Services
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Item name</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                      </div>
+                      
+                    </div>
+                    <div>
+                      <div class="form-group mt-3">
+                        <label for="sellingPrice">Selling Price:</label>
+                        <input type="text" class="form-control" id="sellingPrice" placeholder="Enter selling price">
+                      </div>
+                    </div>
+                        </div>
+                      
+              </section>
+              <div class="controls">
+              <button class="close-btn">Close</button>
+              <button class="submit-btn">Submit</button>
+              </div>
+              </div>
+              </div>
+          </div>
+        </section>
+
+        <section>
+          <div class="container">
+              <style>
+                  table {
+                    border-collapse: collapse;
+                    width: 100%;
+                  }
+              
+                  th, td {
+                    border: 1px solid #ddd;
+                    padding: 8px;
+                    text-align: left;
+                  }
+              
+                  th {
+                    cursor: pointer;
+                  }
+              
+                  tr:nth-child(even) {
+                    background-color: #f2f2f2;
+                  }
+              
+                  input[type=text] {
+                    width: 100%;
+                    padding: 12px 20px;
+                    margin: 8px 0;
+                    box-sizing: border-box;
+                  }
+              
+                  button {
+                    margin-top: 10px;
+                  }
+                </style>
+                <div style="width: 30%; "><input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Search by Product Name..."> </div>
+                <table id="productTable">
+                  <thead>
+                    <tr>
+                      <th onclick="sortTable(0)">Product Name</th>
+                      <th onclick="sortTable(1)">Description</th>
+                      <th onclick="sortTable(2)">Rate</th>
+                      <th onclick="sortTable(3)">Usage Unit</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Table rows will be populated dynamically using JavaScript -->
+                  </tbody>
+                </table>
+              
+                <button onclick="exportToPDF()">Export to PDF</button>
+                <button onclick="copyTable()">Copy Table</button>
+              
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+                <script>
+                  let products = [
+                    { 
+                      "Product Name": "Product A",
+                      "Description": "Description for Product A",
+                      "Rate": "$10",
+                      "Usage Unit": "Unit A"
+                    },
+                    { 
+                      "Product Name": "Product B",
+                      "Description": "Description for Product B",
+                      "Rate": "$15",
+                      "Usage Unit": "Unit B"
+                    },
+                    { 
+                      "Product Name": "Product C",
+                      "Description": "Description for Product C",
+                      "Rate": "$20",
+                      "Usage Unit": "Unit C"
+                    }
+                  ];
+              
+                  function generateTable(data) {
+                    const tbody = document.querySelector('#productTable tbody');
+                    tbody.innerHTML = '';
+                    data.forEach(product => {
+                      const row = document.createElement('tr');
+                      Object.values(product).forEach(value => {
+                        const cell = document.createElement('td');
+                        cell.textContent = value;
+                        row.appendChild(cell);
+                      });
+                      tbody.appendChild(row);
+                    });
+                  }
+              
+                  function sortTable(colIndex) {
+                    const dataType = typeof products[0][Object.keys(products[0])[colIndex]];
+                    products.sort((a, b) => {
+                      let valueA = a[Object.keys(a)[colIndex]];
+                      let valueB = b[Object.keys(b)[colIndex]];
+                      if (dataType === 'string') {
+                        valueA = valueA.toUpperCase();
+                        valueB = valueB.toUpperCase();
+                      }
+                      if (valueA < valueB) return -1;
+                      if (valueA > valueB) return 1;
+                      return 0;
+                    });
+                    generateTable(products);
+                  }
+              
+                  function searchTable() {
+                    const input = document.getElementById('searchInput');
+                    const filter = input.value.toUpperCase();
+                    const rows = document.querySelectorAll('#productTable tbody tr');
+                    rows.forEach(row => {
+                      const productNameCell = row.cells[0];
+                      if (productNameCell.textContent.toUpperCase().indexOf(filter) > -1) {
+                        row.style.display = '';
+                      } else {
+                        row.style.display = 'none';
+                      }
+                    });
+                  }
+              
+                  function exportToPDF() {
+                    const doc = new jsPDF();
+                    doc.autoTable({
+                      html: '#productTable',
+                      styles: { 
+                        cellPadding: 1, 
+                        fontSize: 10 
+                      }
+                    });
+                    doc.save('product_data.pdf');
+                  }
+              
+                  function copyTable() {
+                    const table = document.getElementById('productTable');
+                    const range = document.createRange();
+                    range.selectNode(table);
+                    window.getSelection().removeAllRanges();
+                    window.getSelection().addRange(range);
+                    document.execCommand('copy');
+                    window.getSelection().removeAllRanges();
+                    alert('Table copied to clipboard.');
+                  }
+              
+                  // Populate products array and generate table
+                  generateTable(products);
+                </script>
+
+          </div>
+
+
+        </section>
+      
+      
+</div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+        <script src="{%static 'public/js/scriptDB.js'%}"></script>
+        </body>
+        
+</html>

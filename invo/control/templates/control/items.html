@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+{%load static%}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>invo | Item </title>
+    <link rel="icon" type="image/x-icon" href="{%static 'public/img/invo.png'%}">
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{%static 'public/css/styleDB.css'%}">
+</head>
+<div class="wrapper">
+  <aside id="sidebar" style="background-color: #281536;">
+      <div class="d-flex">
+          <button class="toggle-btn" type="button">
+              <i class="lni lni-grid-alt"></i>
+          </button>
+          <div class="sidebar-logo">
+              <a href="#" style="font-size: larger;">invo</a>
+          </div>
+      </div>
+      <ul class="sidebar-nav">
+          
+          <li class="sidebar-item">
+              <a href="{% url 'dashboard:dashboard' %}" class="sidebar-link">
+                  <i class="lni lni-home"></i>
+                  <span>dashboard</span>
+              </a>
+          </li>
+          <li class="sidebar-item">
+              <a href="{% url 'invoice:invoice' %}" class="sidebar-link">
+                  <i class="lni lni-ticket-alt"></i>
+                  <span>invoices</span>
+              </a>
+          </li>
+          <li class="sidebar-item">
+            <a href="{% url 'invoice:customers' %}" class="sidebar-link">
+                <i class="lni lni-target-customer"></i>
+                <span>customers</span>
+            </a>
+        </li>
+          <li class="sidebar-item">
+              <a href="{% url 'control:sellers' %}" class="sidebar-link">
+                  <i class="lni lni-users"></i>
+                  <span>sellers</span>
+              </a>
+          </li>
+          <li class="sidebar-item">
+              <a href="{% url 'control:items' %}" class="sidebar-link">
+                  <i class="lni lni-cart-full"></i>
+                  <span>items</span>
+              </a>
+          </li>
+         </li>
+          <li class="sidebar-item">
+              <a href="{% url 'control:expenses' %}" class="sidebar-link">
+                  <i class="lni lni-dollar"></i>
+                  <span>expenses</span>
+              </a>
+          </li>
+      </ul>
+      <div class="sidebar-footer">
+          <a href="{% url 'dashboard:logout' %}" class="sidebar-link">
+              <i class="lni lni-exit"></i>
+              <span>Logout</span>
+          </a>
+      </div>
+  </aside>
+<body>
+    
+        <div class="main" style="background-color: #fcebde;">
+            <!--<div class="profile-bar">
+            <nav class="navbar navbar-expand px-4 py-3" style="background: #D8D2D9; ">
+                <form action="#" class="d-none d-sm-inline-block">
+
+                </form>
+                <div class="navbar-collapse collapse" >
+                    <ul class="navbar-nav ms-auto " >
+                        <li class="nav-item dropdown">
+                            <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
+                                <img src="./public/img/account.png" class="avatar img-fluid" alt="">
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end rounded">
+
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+          </div> -->
+          <div class="command-line">
+            <nav class="navbar navbar-expand px-4 py-3" style="background : #fcebde ">
+              <div class="nav-item align-self-start">
+                <i class="lni lni-cart-full fs-1"></i>
+                <a class="navbar-brand fs-1" style="padding-left: 0.5rem;">| Item</a>
+              </div>
+              <div class="nav-item me-auto" style="margin-left: 4rem;" >
+                <button 
+                        hx-get="/modal" 
+                        hx-target="#modals-here" 
+                        hx-trigger="click" 
+                        data-bs-toggle="modal" 
+                        data-bs-target="#modals-here"
+                        class="btn btn-primary"
+                        >New +</button>
+              </div>
+            </nav>
+<div id="modals-here"
+    class="modal modal-blur fade"
+    style="display: none"
+    aria-hidden="false"
+    tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">New Item </h5>
+          </div>
+          <div class="modal-body">
+            <section>
+              
+              <form class="my-4" method="post" action=".">
+                {% csrf_token %}
+                <div class="form-floating mb-3 w-50">
+                  <input type="text" class="form-control" id="name" placeholder="Name" name="name">
+                  <label for="name">Name</label>
+                </div>
+                
+                <div class="form-floating mb-3 w-50">
+                  <input type="float" class="form-control" id="expensePrice" placeholder="Price" name="price">
+                  <label for="expensePrice">price</label>
+                </div>
+              </form>
+                  
+                
+        </section>
+            
+          </div>
+          <div class="modal-footer">
+            <input type="submit" class="btn btn-success align-self-start" data-bs-dismiss="modal" value="Submit">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+    </div>
+</div>
+</nav>
+<div class="command-line">
+  <div class="container p-5" style="background-color: #fcebde;">
+    <div class="container">
+        <div class="container rounded-4 shadow-lg" style="padding-top: 1rem;padding-bottom: 1rem;">
+            <table id="example" class="table table-striped" style="width:100%">
+                <thead class="table-success">
+                    <tr>
+                      <th>Product Name</th>
+                        <th>Description</th>
+                        <th>Rate</th>
+                        <th>Usage Unit</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody hx-confirm="Are you sure?" hx-target="closest tr" hx-swap="outerHTML swap:1s">
+                    <tr>
+                      <th>Product Name</th>
+                        <th>Description</th>
+                        <th>Rate</th>
+                        <th>Usage Unit</th>
+                        <td>
+                          <div class="dropdown">
+                            <button class="dropbtn"> 
+                              <i class="lni lni-layers"></i>
+                            </button>
+                            <div class="dropdown-content">
+                              <a href="#">Deleat</a>
+                            <a href="#">Edit</a>
+                            <a href="#">View</a>
+                            </div>
+                          </div>
+                        </td>
+                    </tr>
+                    <tr>
+                      <th>Product Name</th>
+                        <th>Description</th>
+                        <th>Rate</th>
+                        <th>Usage Unit</th>
+                        <td>
+                          <div class="dropdown">
+                            <button class="dropbtn"> 
+                              <i class="lni lni-layers"></i>
+                            </button>
+                            <div class="dropdown-content">
+                              <a href="#">Deleat</a>
+                            <a href="#">Edit</a>
+                            <a href="#">View</a>
+                            </div>
+                          </div>
+                        </td>
+                  </tr>
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+        <script src="{%static 'public/js/scriptDB.js'%}"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js" ></script>
+        <script>
+          $("#example").DataTable({
+            paging:true,
+            pageLength:10,
+            lengthChange:true,
+            autoWidth:true,
+            searching:true,
+            bInfo:true,
+            bSort:true,
+          })
+        </script>
+        </body>
+</html>

@@ -1,0 +1,28 @@
+
+
+html,body{
+    margin: 0%;
+    box-sizing: border-box;
+    width: 100%;
+    height:100%;
+
+}
+/*css variables */
+:root{
+    --primary-color:#140005 ;
+    --primary-color2:#D8D2D1 ;
+    --primary-color3:#FADCD9 ;
+    --primary-color4:#FFFFFF ;
+    --primary-color5:#BBBBBB ;
+    --gradient-color: linear-gradient(90deg,#140005 0%,#BBBBBB 40%);
+    --shadow-color : 0px 10px 30px rgba(118,85,255,0.3);
+    --box-shadow : 0px 10px 30px rgba(57,56,61,0.205);
+
+    /*font family variables*/
+
+    --lato : "Lato";
+    --Frank_Ruhl_Libre : "Frank_Ruhl_Libre";
+
+
+
+}

@@ -1,0 +1,11 @@
+/* @font-face*/
+
+@font-face{
+    font-family:"Frank_Ruhl_Libre";
+    src: '../fonts/Frank_Ruhl_Libre/FrankRuhlLibre-VariableFont_wght.ttf';
+}
+
+@font-face{
+    font-family:"Lato";
+    src: '../fonts/Lato/Lato-Regular.ttf';
+}

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+{%load static%}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>invo | invoice </title>
+    <link rel="icon" type="image/x-icon" href="{%static 'public/img/invo.png'%}">
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{%static 'public/css/styleDB.css'%}">
+</head>
+<div class="wrapper">
+  <aside id="sidebar" style="background-color: #281536;  ">
+    <div class="d-flex">
+        <button class="toggle-btn" type="button">
+            <i class="lni lni-grid-alt"></i>
+        </button>
+        <div class="sidebar-logo">
+            <a href="#" style="font-size: larger;">invo</a>
+        </div>
+    </div>
+    <ul class="sidebar-nav">
+        
+        <li class="sidebar-item">
+            <a href="{% url 'dashboard:dashboard' %}" class="sidebar-link">
+                <i class="lni lni-home"></i>
+                <span style="font-size: larger;">dashboard</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a href="{% url 'invoice:invoice' %}" class="sidebar-link">
+                <i class="lni lni-ticket-alt"></i>
+                <span style="font-size: larger;">invoices</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="{% url 'invoice:customers' %}" class="sidebar-link">
+              <i class="lni lni-target-customer"></i>
+              <span style="font-size: larger;">customers</span>
+          </a>
+      </li>
+        <li class="sidebar-item">
+            <a href="{% url 'control:sellers' %}" class="sidebar-link">
+                <i class="lni lni-users"></i>
+                <span style="font-size: larger;">sellers</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a href="{% url 'control:items' %}" class="sidebar-link">
+                <i class="lni lni-cart-full"></i>
+                <span style="font-size: larger;">items</span>
+            </a>
+        </li>
+       </li>
+        <li class="sidebar-item">
+            <a href="{% url 'control:expenses' %}" class="sidebar-link">
+                <i class="lni lni-dollar"></i>
+                <span style="font-size: larger;">expenses</span>
+            </a>
+        </li>
+    </ul>
+    <div class="sidebar-footer">
+        <a href="{% url 'dashboard:logout' %}" class="sidebar-link">
+            <i class="lni lni-exit"></i>
+            <span style="font-size: larger;">Logout</span>
+        </a>
+    </div>
+</aside>
+<body>
+    
+        <div class="main" style="background-color: #fcebde;">
+            <!--<div class="profile-bar">
+            <nav class="navbar navbar-expand px-4 py-3" style="background: #D8D2D9; ">
+                <form action="#" class="d-none d-sm-inline-block">
+
+                </form>
+                <div class="navbar-collapse collapse" >
+                    <ul class="navbar-nav ms-auto " >
+                        <li class="nav-item dropdown">
+                            <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
+                                <img src="./public/img/account.png" class="avatar img-fluid" alt="">
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end rounded">
+
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+          </div> -->
+          <div class="command-line">
+            <nav class="navbar navbar-expand px-4 py-3" style="background : #fcebde ">
+              <div class="nav-item align-self-start">
+                <i class="lni lni-ticket-alt fs-1" style="font-size: 100%;"></i>
+                <a class="navbar-brand fs-1" style="padding-left: 0.5rem;">| Invoices</a>
+              </div>
+              <div class="nav-item me-auto" style="margin-left: 4rem;" >
+                <button 
+                        hx-get="/modal" 
+                        hx-target="#modals-here" 
+                        hx-trigger="click" 
+                        data-bs-toggle="modal" 
+                        data-bs-target="#modals-here"
+                        class="btn btn-primary"
+                        >New +</button>
+              </div>
+            </nav>
+<div id="modals-here"
+    class="modal modal-blur fade"
+    style="display: none"
+    aria-hidden="false"
+    tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">New invoices </h5>
+          </div>
+          <div class="modal-body">
+            <form action="/submit" method="post" class="form-floating">
+              <div style="width: 50%; padding-left:3%;">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect">Select customer:</label>
+                    <input type="text" class="form-control" id="searchInput" placeholder="Search...">
+                    <select class="form-control" id="exampleFormControlSelect">
+                      <option>Option 1</option>
+                      <option>Option 2</option>
+                      <option>Option 3</option>
+                      <option>Option 4</option>
+                      <option>Option 5</option>
+                      <option>Option 6</option>
+                      <option>Option 7</option>
+                      <option>Option 8</option>
+                      <option>Option 9</option>
+                      <option>Option 10</option>
+                    </select>
+                  </div>
+                  <div>
+                    <h4> Invoice# : 0000000000</h4>
+                  </div>
+                  <div>
+                    <h4> Invoice DATE : 27-3-28</h4>
+                  </div> 
+                  <div>
+                    <h4>
+                        <hr class="dropdown-divider">
+                    </h4>
+                  </div>
+                  <div>
+                    <h4> Item table :</h4>
+                  </div> 
+
+
+
+                  <div>
+
+                    <style>
+                        table {
+                          border-collapse: collapse;
+                          width: 100%;
+                        }
+                    
+                        th, td {
+                          border: 1px solid #dddddd;
+                          text-align: left;
+                          padding: 8px;
+                        }
+                    
+                        th {
+                          background-color: #f2f2f2;
+                        }
+                    
+                        td {
+                          background-color: #ffffff;
+                        }
+                    
+                        td[contenteditable="true"] {
+                          background-color: #ffffcc;
+                        }
+                      </style>
+                    
+                    
+                    <table id="editableTable">
+                      <thead>
+                        <tr>
+                          <th>Item</th>
+                          <th>Quantity</th> <!-- Changed from "Email" to "Quantity" -->
+                          <th>AMOUNT</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td contenteditable="false">
+                            <select class="form-control">
+                              <option value="item1">Item 1</option>
+                              <option value="item2">Item 2</option>
+                              <option value="item3">Item 3</option>
+                            </select>
+                          </td>
+                          <td contenteditable="true">
+                            <input type="number" class="form-control" min="0" step="1">
+                          </td> <!-- Changed to input type number -->
+                          <td contenteditable="true"></td>
+                          <td><button onclick="deleteRow(this)">Delete</button></td>
+                        </tr>
+                        <tr>
+                          <td contenteditable="false">
+                            <select class="form-control">
+                              <option value="item1">Item 1</option>
+                              <option value="item2">Item 2</option>
+                              <option value="item3">Item 3</option>
+                            </select>
+                          </td>
+                          <td contenteditable="true">
+                            <input type="number" class="form-control" min="0" step="1">
+                          </td> <!-- Changed to input type number -->
+                          <td contenteditable="true"></td>
+                          <td><button onclick="deleteRow(this)">Delete</button></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    
+                    <button onclick="addRow()">Add Row</button>
+                    
+                    <script>
+                      function addRow() {
+                        var table = document.getElementById("editableTable").getElementsByTagName('tbody')[0];
+                        var newRow = table.insertRow(table.rows.length);
+                        var cells = ['Item', 'Quantity', 'Phone']; // Define cell values for new row
+                        for (var i = 0; i < cells.length; i++) {
+                          var cell = newRow.insertCell(i);
+                          if (i === 0) { // For the "Item" column
+                            var selectElement = document.createElement('select');
+                            selectElement.className = "form-control";
+                            selectElement.innerHTML = `
+                              <option value="item1">Item 1</option>
+                              <option value="item2">Item 2</option>
+                              <option value="item3">Item 3</option>
+                            `;
+                            cell.appendChild(selectElement);
+                          } else if (i === 1) { // For the "Quantity" column
+                            var inputElement = document.createElement('input');
+                            inputElement.type = "number";
+                            inputElement.className = "form-control";
+                            inputElement.min = "0";
+                            inputElement.step = "1";
+                            cell.appendChild(inputElement);
+                          } else {
+                            cell.contentEditable = true;
+                            cell.textContent = ''; // Set initial text content to empty
+                          }
+                        }
+                        var deleteButtonCell = newRow.insertCell(cells.length);
+                        var deleteButton = document.createElement('button');
+                        deleteButton.textContent = 'Delete';
+                        deleteButton.setAttribute('onclick', 'deleteRow(this)');
+                        deleteButtonCell.appendChild(deleteButton);
+                      }
+                    
+                      function deleteRow(button) {
+                        var row = button.parentNode.parentNode;
+                        row.parentNode.removeChild(row);
+                      }
+                    </script>
+                  </div>
+                </div>
+            </form>
+            
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success align-self-start" data-bs-dismiss="modal">Submit</button>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+    </div>
+</div>
+</nav>
+<div class="command-line">
+  <div class="container p-5" style="background-color: #fcebde;">
+    <div class="container">
+        <div class="container rounded-4 shadow-lg" style="padding-top: 1rem;padding-bottom: 1rem;">
+            <table id="example" class="table table-striped" style="width:100%">
+                <thead class="table-success">
+                    <tr>
+                      <th >Invoice Number</th>
+                      <th >Date</th>
+                      <th >Order Number</th>
+                      <th>Customer Name</th>
+                      <th >Status</th>
+                      <th>Amount</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody hx-confirm="Are you sure?" hx-target="closest tr" hx-swap="outerHTML swap:1s">
+                    <tr>
+                      <th >Invoice Number</th>
+                      <th >Date</th>
+                      <th >Order Number</th>
+                      <th>Customer Name</th>
+                      <th >Status</th>
+                      <th>Amount</th>
+                        <td>
+                          <button class=""> 
+                            <i class="bi bi-pencil-fill bg-primary"></i>
+                          </button>
+                          <div class="dropdown">
+                            <button class="dropbtn"> 
+                              <i class="lni lni-layers"></i>
+                            </button>
+                            <div class="dropdown-content">
+                              <a href="#">Delete</a>
+                              <a href="#">Edit</a>
+                              <a href="#">View</a>
+                            </div>
+                          </div>
+                        </td>
+                    </tr>
+                    <tr>
+                      <th >Invoice Number</th>
+                      <th >Date</th>
+                      <th >Order Number</th>
+                      <th>Customer Name</th>
+                      <th >Status</th>
+                      <th>Amount</th>
+                      <td> 
+                        <div class="dropdown">
+                          <button class="dropbtn"> 
+                            <i class="lni lni-layers"></i>
+                          </button>
+                          <div class="dropdown-content">
+                            <a href="#">Deleat</a>
+                            <a href="#">Edit</a>
+                            <a href="#">View</a>
+                          </div>
+                        </div>                           
+                      </td>
+                  </tr>
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+        <script src="{%static 'public/js/scriptDB.js'%}"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js" ></script>
+        <script>
+          $("#example").DataTable({
+            paging:true,
+            pageLength:10,
+            lengthChange:true,
+            autoWidth:true,
+            searching:true,
+            bInfo:true,
+            bSort:true,
+          })
+        </script>
+        </body>
+</html>

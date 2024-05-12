@@ -70,130 +70,70 @@
     </div>
 </aside>
 <body>
-    
-        <div class="main" style="background-color: #fcebde;">
-            <!--<div class="profile-bar">
-            <nav class="navbar navbar-expand px-4 py-3" style="background: #D8D2D9; ">
-                <form action="#" class="d-none d-sm-inline-block">
-
-                </form>
-                <div class="navbar-collapse collapse" >
-                    <ul class="navbar-nav ms-auto " >
-                        <li class="nav-item dropdown">
-                            <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
-                                <img src="./public/img/account.png" class="avatar img-fluid" alt="">
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-end rounded">
-
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-          </div> -->
-          <div class="command-line">
-            <nav class="navbar navbar-expand px-4 py-3" style="background : #fcebde ">
-              <div class="nav-item align-self-start">
-                <i class="lni lni-users fs-1" style="font-size: 100%;"></i>
-                <a class="navbar-brand fs-1" style="padding-left: 0.5rem;">| Sellers</a>
-              </div>
-              <div class="nav-item me-auto" style="margin-left: 4rem;" >
-                <button 
-                        hx-get="/modal" 
-                        hx-target="#modals-here" 
-                        hx-trigger="click" 
-                        data-bs-toggle="modal" 
-                        data-bs-target="#modals-here"
-                        class="btn btn-primary"
-                        >New +</button>
-              </div>
-            </nav>
-<div id="modals-here"
-    class="modal modal-blur fade"
-    style="display: none"
-    aria-hidden="false"
-    tabindex="-1">
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Add Seller</h5>
-          </div>
-          <div class="modal-body">
-            <form action="/submit" method="post" class="form-floating">
-              <div class="form-floating mb-3">
-                <input type="email" class="form-control w-50" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">Email address</label>
-              </div>
-              <div class="form-floating">
-                <input type="password" class="form-control w-50" id="floatingPassword" placeholder="Password">
-                <label for="floatingPassword">Name</label>
-              </div>
-            </form>
-            
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-success align-self-start" data-bs-dismiss="modal">Submit</button>
-            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-          </div>
+  <div class="main" style="background-color: #fcebde;">
+    <div class="command-line">
+      <nav class="navbar navbar-expand px-4 py-3" style="background : #fcebde ">
+        <div class="nav-item align-self-start">
+          <i class="lni lni-users fs-1"></i>
+          <a class="navbar-brand fs-1" style="padding-left: 0.5rem;">| Sellers</a>
         </div>
+        
+      </nav>
     </div>
-</div>
-</nav>
-<div class="command-line">
-  <div class="container p-5" style="background-color: #fcebde;">
-    <div class="container">
-        <div class="container rounded-4 shadow-lg" style="padding-top: 1rem;padding-bottom: 1rem;">
-            <table id="example" class="table table-striped" style="width:100%">
+  <main class="container my-4">
+    <div class="row">
+      <div class="col-md-4">
+        <h2>Add Seller</h2>
+        <form class="my-4" method="post" action=".">
+          {% csrf_token %}
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="name" placeholder="Name" name="name">
+            <label for="name">Name</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="sellerEmail" placeholder="Email" name="email">
+            <label for="sellerEmail">Email</label>
+          </div>
+          
+          
+          <input type="submit" class="btn btn-primary" value="Submit">
+        </form>
+      </div>
+
+      <div class="col-md-8" >
+            <h2>Seller List</h2>
+        <div class="container">
+          <div class="container rounded-4 shadow-lg" style="padding-top: 1rem;padding-bottom: 1rem;">
+            <div class="table-responsive">
+              <table id="example" class="table table-striped my-4" style="width:100%">
                 <thead class="table-success">
                     <tr>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Email</th>
-                        <th>Action</th>
+                      <th>Name</th>
+                      <th>Price</th>
+                      <th>Action</th>
                     </tr>
                 </thead>
                 <tbody hx-confirm="Are you sure?" hx-target="closest tr" hx-swap="outerHTML swap:1s">
-                    <tr>
-                        <td>Tiger Nixon</td>
-                        <th>Description</th>
-                        <td>T@g.com</td>
-                        <td><div class="dropdown">
-                          <button class="dropbtn"> 
-                            <i class="lni lni-layers"></i>
-                          </button>
-                          <div class="dropdown-content">
-                            <a href="#">Deleat</a>
-                            <a href="#">Edit</a>
-                            <a href="#">View</a>
-                          </div>
-                        </div></td>
-                    </tr>
-                    <tr>
-                      <td>Fahad</td>
-                      <th>Description</th>
-                      <td>F@g.com</td>
-                      <td>
-                        <div class="dropdown">
-                        <button class="dropbtn"> 
-                          <i class="lni lni-layers"></i>
-                        </button>
-                        <div class="dropdown-content">
-                          <a href="#">Deleat</a>
-                            <a href="#">Edit</a>
-                            <a href="#">View</a>
-                        </div>
-                      </div></td>
+                  {% for seller in sellers %}  
+                  <tr>
+                    <td>{{ seller.name }}</td>
+                    <td>{{ seller.price}}</td>
+                    <td>
+                    <!--<a href="{% url 'control:edit_item' item.id %}" class="btn btn-primary" id="edit-form">edit </a>  
+                    <a href="{% url 'control:delete_item' item.id %}" class="btn btn-danger">delete </a>-->
+                    </td>
                   </tr>
+                  {% endfor %}
                 </tbody>
             </table>
+            </div>
             
         </div>
+      </div>
     </div>
-  </div>
-</div>
-</div>
-</div>
 
+        
+  </main>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
@@ -201,16 +141,23 @@
         <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
         <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js" ></script>
+        
         <script>
-          $("#example").DataTable({
-            paging:true,
-            pageLength:10,
-            lengthChange:true,
-            autoWidth:true,
-            searching:true,
-            bInfo:true,
-            bSort:true,
-          })
+          $(document).ready(function() {
+            $("#example").DataTable({
+              paging:true,
+              pageLength:10,
+              lengthChange:true,
+              autoWidth:true,
+              searching:true,
+              bInfo:true,
+              bSort:true,
+      
+            } 
+          );
+          
+      } );
         </script>
-        </body>
+  </div>
+</body>
 </html>

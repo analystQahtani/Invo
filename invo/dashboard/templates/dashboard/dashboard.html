@@ -1,8 +1,192 @@
-{%extends 'dashboard/base.html' %}
+<!DOCTYPE html>
+{%load static%}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>invo | invoice </title>
+    <link rel="icon" type="image/x-icon" href="{%static 'public/img/invo.png'%}">
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{%static 'public/css/styleDB.css'%}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" /></head>
 
-{% block content %}
-  
-    <p>HI{{user.first_name }}</p>
-  
+<div class="wrapper">
+  <aside id="sidebar" style="background-color: #281536;  ">
+    <div class="d-flex">
+        <button class="toggle-btn" type="button">
+            <i class="lni lni-grid-alt"></i>
+        </button>
+        <div class="sidebar-logo">
+            <a href="#" style="font-size: larger;">invo</a>
+        </div>
+    </div>
+    <ul class="sidebar-nav">
+        
+        <li class="sidebar-item">
+            <a href="{% url 'dashboard:dashboard' %}" class="sidebar-link">
+                <i class="lni lni-home"></i>
+                <span style="font-size: larger;">dashboard</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a href="{% url 'invoice:invoice' %}" class="sidebar-link">
+                <i class="lni lni-ticket-alt"></i>
+                <span style="font-size: larger;">invoices</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="{% url 'invoice:customers' %}" class="sidebar-link">
+              <i class="lni lni-target-customer"></i>
+              <span style="font-size: larger;">customers</span>
+          </a>
+      </li>
+        <li class="sidebar-item">
+            <a href="{% url 'control:sellers' %}" class="sidebar-link">
+                <i class="lni lni-users"></i>
+                <span style="font-size: larger;">sellers</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a href="{% url 'control:items' %}" class="sidebar-link">
+                <i class="lni lni-cart-full"></i>
+                <span style="font-size: larger;">items</span>
+            </a>
+        </li>
+       </li>
+        <li class="sidebar-item">
+            <a href="{% url 'control:expenses' %}" class="sidebar-link">
+                <i class="lni lni-dollar"></i>
+                <span style="font-size: larger;">expenses</span>
+            </a>
+        </li>
+    </ul>
+    <div class="sidebar-footer">
+        <a href="{% url 'dashboard:logout' %}" class="sidebar-link">
+            <i class="lni lni-exit"></i>
+            <span style="font-size: larger;">Logout</span>
+        </a>
+    </div>
+</aside>
+<body>
+    
+  <div class="main" style="background-color: #fcebde;">
+            
+    <div class="command-line">
+      <nav class="navbar navbar-expand px-4 py-3" style="background : #fcebde ">
+        <div class="nav-item align-self-start">
+            <i class="lni lni-home fs-1" style="font-size: 100%;"></i>
+                <a class="navbar-brand fs-1" style="padding-left: 0.5rem;">| Dashboard</a>
+        </div>
+              
+      </nav>
 
-{% endblock %}
+<div class="command-line">
+  <div class="container p-5" style="background-color: #fcebde;">
+    <div class="container">
+        <div class="container rounded-4 shadow-lg" style="padding-top: 1rem;padding-bottom: 1rem;">    
+            <main class="container my-4">
+                <h1> Welcome !</h1>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="card bg-primary text-white">
+                      <div class="card-body">
+                        <h5 class="card-title">Total sales</h5>
+                        <p class="card-text">100</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="card bg-success text-white">
+                      <div class="card-body">
+                        <h5 class="card-title">Total Customers</h5>
+                        <p class="card-text">50</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="card bg-warning text-dark">
+                      <div class="card-body">
+                        <h5 class="card-title">Total Expenses</h5>
+                        <p class="card-text">$500</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div style="padding-top: 3%;">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="card bg-dark text-white">
+                        <div class="card-body">
+                          <h5 class="card-title">Net profit </h5>
+                          <p class="card-text">100</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="card bg-success text-white">
+                        <div class="card-body">
+                          <h5 class="card-title">Cash flow</h5>
+                          <p class="card-text">50</p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                  </div>
+                </div>
+              
+                <div class="row mt-4">
+                  <div class="col-md-6">
+                    <h2>Recent Invoices</h2>
+                    <ul class="list-group">
+                      <li class="list-group-item">Invoice 1</li>
+                      <li class="list-group-item">Invoice 2</li>
+                      <li class="list-group-item">Invoice 3</li>
+                    </ul>
+                  </div>
+                  <div class="col-md-6">
+                    <h2>Upcoming Tasks</h2>
+                    <ul class="list-group">
+                      <li class="list-group-item">Task 1</li>
+                      <li class="list-group-item">Task 2</li>
+                      <li class="list-group-item">Task 3</li>
+                    </ul>
+                  </div>
+                </div>
+              
+                <div class="row mt-4">
+                  <div class="col-md-12">
+                    <h2>Monthly Revenue</h2>
+                    <canvas id="revenueChart"></canvas>
+                  </div>
+                </div>
+              </main>
+          
+            
+        </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+        
+  </body>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+        <script src="{%static 'public/js/scriptDB.js'%}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js" ></script>
+        
+        
+        
+</html>

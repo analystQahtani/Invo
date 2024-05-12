@@ -37,6 +37,9 @@ SHARED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts',
+    'widget_tweaks',
+    'crispy_forms',
+    "crispy_bootstrap4",
 ]
 TENANT_APPS = [
     'django.contrib.contenttypes',
@@ -154,3 +157,6 @@ CSRF_COOKIE_DOMAIN = ".mysite.com"
 CSRF_TRUSTED_ORIGINS = ["http://*.mysite.com", "http://mysite.com"]
 CSRF_COOKIE_SAMESITE = 'None'  # Important for cross-domain or cross-subdomain use
 CSRF_COOKIE_SECURE = False
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

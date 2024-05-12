@@ -80,7 +80,11 @@ def signin(request):
         if user is not None:
             login(request, user)
             domain = user.user.all().first().get_primary_domain()
-            url = f"http://test.testsite.com:8000/dashboard"
+            #ht = f"http://"
+            #tp = f".mysite.com:8000/dashboard"
+            #u = ht + domain + tp
+            
+            url = f"http://rangerover.mysite.com:8000/dashboard"
 
             return redirect(url)
         else:
